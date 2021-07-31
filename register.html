@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Registration</title>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+
+<body>
+	<div>
+		<h1>Registration form</h1>
+		<form action="reg" method="POST">
+			<input type="hidden" name="_csrf" id="_csrf">
+			<input type="text" name="username" placeholder="Username" required>
+			<input type="password" name="password" placeholder="Password" required>
+			<input type="password" name="repeatpass" placeholder="Repeat Password" required>
+			<input type="email" name="email" placeholder="Enter Email" required>
+			<div class="g-recaptcha" data-sitekey="6LfoeK8ZAAAAAItlg0_RwUcMV0qLzCG4WX4j2xmL"></div><br>
+			<input type="submit">
+		</form>
+	</div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function () {
+		$('#comment_form').submit(function () {
+			$(this).ajaxSubmit({
+				error: function (xhr) {
+					status('Error: ' + xhr.status);
+				},
+				success: function (response) {
+					console.log(response);
+				}
+			});
+			return false;
+		});
+	});
+
+	let url = "https://localhost:3000/token";
+	fetch(url).then(response => response.json())
+		.then((result) => {
+			document.getElementById('_csrf').value = `${result.csrfToken}`;
+		})
+		.catch(error => console.log(error));
+</script>
+
+</html>

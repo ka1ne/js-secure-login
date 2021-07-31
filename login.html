@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+</head>
+
+<body>
+	<div>
+		<h1>Login</h1>
+		<form action="auth" method="POST">
+			<input type="hidden" name="_csrf" id="_csrf">
+			<input type="text" name="username" placeholder="Username" required>
+			<input type="password" name="password" placeholder="Password" required>
+			<input type="code" name="code" placeholder="Code if 2FA enabled">
+			<input type="submit">
+		</form>
+
+		<form action="/register.html" style="margin-top: 2vh;">
+			<input type="submit" value="Register"/>
+		</form>
+	</div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+  crossorigin="anonymous"></script>
+<script>
+	let url = "https://localhost:3000/token";
+	fetch(url).then(response => response.json())
+		.then((result) => {
+			document.getElementById('_csrf').value = `${result.csrfToken}`;
+		})
+		.catch(error => console.log(error));
+</script>
+
+</html>

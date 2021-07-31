@@ -1,0 +1,11 @@
+*.key
+*.crt
+*.csr
+*.cnf
+v3.ext
+*.pem
+*.srl
+*.swp
+*.env
+node_modules
+*.vscode
