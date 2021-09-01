@@ -1,6 +1,3 @@
-# security-cw
-Repo for my work on a piece of coursework for the security module of my CS degree.
-
 ## Features
 - Login & registration authentication
 - Stored passwords hashed
